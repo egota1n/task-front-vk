@@ -53,8 +53,7 @@ function reducer(state: State, action: Action): State {
 }
 
 const ItemList: React.FC = () => {
-	const token1 = 'ghp_';
-	const token2 = 'ahVTHsopug6wzR8WFgISAs5BL6Zumz1584Hh';
+	const token = process.env.REACT_APP_GITHUB_TOKEN;
 
 	const [state, dispatch] = useReducer(reducer, initialState);
 	const [editingId, setEditingId] = useState<number | null>(null);
@@ -68,7 +67,7 @@ const ItemList: React.FC = () => {
 				`https://api.github.com/search/repositories?q=javascript&sort=stars&order=asc&page=${state.page}`,
 				{
 					headers: {
-						Authorization: `Bearer ${token1}${token2}`,
+						Authorization: `Bearer ${token}`,
 					},
 				}
 			);
